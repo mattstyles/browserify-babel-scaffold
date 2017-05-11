@@ -14,7 +14,8 @@ const entry = {
   js: 'src/main.js',
   html: 'examples/index.html',
   less: 'src/styles.less',
-  dir: 'src'
+  dir: 'examples',
+  src: 'src'
 }
 const out = {
   css: 'styles.css'
@@ -22,7 +23,7 @@ const out = {
 
 budo(entry.js, {
   live: true,
-  watchGlob: path.join(entry.dir, '**/*.{html,less,json,js}'),
+  watchGlob: path.join(entry.src, '**/*.{html,less,json,js}'),
   dir: entry.dir,
   stream: process.stdout,
   middleware: less(entry.less, out.css, {
