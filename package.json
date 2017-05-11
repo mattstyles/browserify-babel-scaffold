@@ -1,0 +1,59 @@
+{
+  "name": "browserify-babel-scaffold",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "ISC",
+  "scripts": {
+    "test": "NODE_PATH=src tape -r babel-register spec/*.test.js",
+    "lint": "standard src",
+    "clean": "rimraf dist && mkdirp dist",
+    "build-js": "NODE_PATH=src NODE_ENV=production browserify src/main.js | uglifyjs -cm > dist/main.js",
+    "build-styles": "lessc src/styles.less --include-path=node_modules:src/core/styles:src --autoprefix='last 2 versions' --clean-css > dist/styles.css",
+    "prebuild": "yarn run clean",
+    "build": "yarn run build-js && yarn run build-styles",
+    "start": "NODE_PATH=src bin/examples"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "lodash"
+    ]
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-lodash": "^3.2.11",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "babelify": "^7.3.0",
+    "browserify": "^14.3.0",
+    "budo": "^10.0.3",
+    "less": "^2.7.2",
+    "less-plugin-autoprefix": "^1.5.1",
+    "less-plugin-clean-css": "^1.5.1",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.1",
+    "simple-less-middleware": "^1.1.0",
+    "standard": "^10.0.2",
+    "tape": "^4.6.3",
+    "uglifyjs": "^2.4.10"
+  },
+  "dependencies": {
+    "axios": "^0.16.1",
+    "eventemitter3": "^2.0.3",
+    "lodash": "^4.17.4",
+    "most": "^1.3.0",
+    "mustache": "^2.3.0",
+    "normalize.css": "^7.0.0"
+  }
+}
