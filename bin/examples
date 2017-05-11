@@ -14,7 +14,7 @@ const entry = {
   js: 'src/main.js',
   html: 'examples/index.html',
   less: 'src/styles.less',
-  dir: 'src'
+  dir: 'examples'
 }
 const out = {
   css: 'styles.css'
